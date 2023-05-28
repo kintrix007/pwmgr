@@ -1,5 +1,6 @@
 #include "generator.h"
 #include <cstdlib>
+#include <sstream>
 #include <string>
 
 static std::string symbols = "!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~";
@@ -33,12 +34,12 @@ std::string Password::generate(const Options &opts) {
         charset += symbols;
     }
 
-    std::string password;
+    std::stringstream password;
     for (int i = 0; i < opts.length; i++) {
         int idx = rand() % charset.size();
-        password += charset[idx];
+        password << charset[idx];
     }
 
-    return password;
+    return password.str();
 }
 
