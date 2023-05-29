@@ -3,6 +3,7 @@
 #include <array>
 #include <iostream>
 #include <optional>
+#include <sstream>
 #include <string>
 #include <vector>
 
@@ -11,6 +12,22 @@ Database::Entry::~Entry() {
   delete this->password;
   delete this->username;
   delete this->website;
+}
+
+std::string Database::human_str(const Database::Entry *entry) {
+  std::stringstream ss;
+
+  ss << "[" << *entry->name << "]" << std::endl;
+  if (entry->website->has_value()) {
+    ss << "Website:  " << entry->website->value() << std::endl;
+  }
+  if (entry->username->has_value()) {
+    ss << "Username: " << entry->username->value() << std::endl;
+  }
+  ss << "Password: " << *entry->password << std::endl;
+  ss << "Category: " << entry->category << std::endl;
+
+  return ss.str();
 }
 
 Database::Entry *Database::new_entry(const std::string &name,
@@ -27,8 +44,8 @@ Database::Entry *Database::new_entry(const std::string &name,
   };
 }
 
-const std::vector<Database::Entry *> Database::get_entries(const DB *db) {
-  std::vector<Database::Entry *> entries;
+const std::vector<const Database::Entry *> Database::get_entries(const DB *db) {
+  std::vector<const Database::Entry *> entries;
 
   for (const auto &[_, entry] : *db) {
     entries.push_back(entry);
@@ -134,10 +151,10 @@ std::ostream &operator<<(std::ostream &out, const Database::Entry *entry) {
 
 std::istream &take_n_chars(std::istream &in, std::string *str, int n) {
   str->clear();
-  char *chars = new char[n+2];
+  char *chars = new char[n + 2];
 
-  in.read(chars, n+1);
-  *str = chars+1;
+  in.read(chars, n + 1);
+  *str = chars + 1;
 
   delete[] chars;
   return in;

@@ -23,6 +23,8 @@ struct Entry {
   ~Entry();
 };
 
+std::string human_str(const Entry *entry);
+
 typedef std::unordered_map<std::string, Entry *> DB;
 
 Entry *new_entry(const std::string &name, const std::string &password,
@@ -30,7 +32,7 @@ Entry *new_entry(const std::string &name, const std::string &password,
                  std::optional<const std::string> username,
                  std::optional<const std::string> website);
 
-const std::vector<Entry *> get_entries(const DB *db);
+const std::vector<const Entry *> get_entries(const DB *db);
 
 bool entry_exists(const DB *db, const std::string &entry_name);
 
