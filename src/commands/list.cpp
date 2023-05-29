@@ -50,6 +50,7 @@ field_to_cmp_func(const Args::Field field) {
   case Args::USERNAME:
     return [](auto x, auto y) { return compare(*x->username, *y->username); };
   }
+  throw; // Just to silence a warning
 }
 
 void List::run(Database::DB *db, Args::ListFlags flags) {
