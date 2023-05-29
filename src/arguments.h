@@ -18,7 +18,9 @@ struct AddFlags {
   Password::Options password{};
 };
 
-struct EditFlags {};
+struct EditFlags {
+  std::string entry_name;
+};
 
 struct RemoveFlags {
   std::vector<std::string> entry_names{};
