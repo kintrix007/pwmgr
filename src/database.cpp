@@ -75,13 +75,13 @@ void Database::update_password(DB *db, const std::string &entry_name,
   auto entry = db->at(entry_name);
 
   if (entry->name != new_entry->name) {
-    entry->name = new_entry->name;
+    *entry->name = *new_entry->name;
     db->erase(entry_name);
     db->insert({*entry->name, entry});
   }
 
   if (entry->password != new_entry->password) {
-    entry->password = new_entry->password;
+    *entry->password = *new_entry->password;
   }
 
   if (entry->category != new_entry->category) {
@@ -89,11 +89,13 @@ void Database::update_password(DB *db, const std::string &entry_name,
   }
 
   if (entry->username != new_entry->username) {
-    entry->username = new_entry->username;
+    delete entry->username; // Pretty sure it is literally impossible to do otherwise
+    entry->username = new std::optional<const std::string>{*new_entry->username};
   }
 
   if (entry->website != new_entry->website) {
-    entry->website = new_entry->website;
+    delete entry->website;
+    entry->website = new std::optional<const std::string>{*new_entry->website};
   }
 }
 
