@@ -1,8 +1,6 @@
 #include "list.h"
 #include "src/arguments.h"
 #include "src/database.h"
-#include <algorithm>
-#include <cstdint>
 #include <functional>
 #include <iostream>
 #include <optional>
