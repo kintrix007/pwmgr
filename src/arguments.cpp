@@ -10,9 +10,12 @@ const Args::Command Args::parse(int argc, char **argv) {
   // // flags->help = {"help"};
   // flags->help = {{}};
   // Args::Command command = {HELP, flags};
-  flags->list = {{USERNAME, WEBSITE}};
-  // flags->list = {{NAME}};
-  Args::Command command = {LIST, flags};
+
+  // flags->list = {{USERNAME, WEBSITE, NAME}};
+  // Args::Command command = {LIST, flags};
+
+  flags->add = {true, {16, true, false, false, false}};
+  Args::Command command = {ADD, flags};
 
   return command;
 }

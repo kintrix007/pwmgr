@@ -1,6 +1,7 @@
 #ifndef ARGUMENTS_H
 #define ARGUMENTS_H
 
+#include "src/generator.h"
 #include <optional>
 #include <string>
 #include <vector>
@@ -13,10 +14,8 @@ struct HelpFlags {
 };
 
 struct AddFlags {
-  bool gen_lower;
-  bool gen_upper;
-  bool gen_number;
-  bool gen_symbol;
+  bool only_required;
+  Password::Options password;
 };
 
 struct EditFlags {};
