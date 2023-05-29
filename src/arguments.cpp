@@ -1,4 +1,6 @@
 #include "src/arguments.h"
+#include <iostream>
+#include <string>
 
 Args::Command::~Command() { delete this->flags; }
 
@@ -17,8 +19,11 @@ const Args::Command Args::parse(int argc, char **argv) {
   // flags->add = {true, {16, true, false, false, false}};
   // Args::Command command = {ADD, flags};
 
-  flags->remove = {{"a", "b"}};
-  Args::Command command = {REMOVE, flags};
+  // flags->remove = {{"a", "b"}};
+  // Args::Command command = {REMOVE, flags};
+
+  flags->edit = {"b"}; // This segfaults... Absolutely no clue why.
+  Args::Command command = {EDIT, flags};
 
   return command;
 }
