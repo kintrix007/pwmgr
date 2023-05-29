@@ -14,14 +14,14 @@ struct HelpFlags {
 };
 
 struct AddFlags {
-  bool only_required;
-  Password::Options password;
+  bool only_required{};
+  Password::Options password{};
 };
 
 struct EditFlags {};
 
 struct RemoveFlags {
-  bool batch;
+  std::vector<std::string> entry_names{};
 };
 
 struct SearchFlags {
@@ -29,7 +29,7 @@ struct SearchFlags {
 };
 
 struct ListFlags {
-  std::vector<Field> sort_on;
+  std::vector<Field> sort_on{};
 };
 
 union FlagsUnion {
