@@ -5,15 +5,15 @@
 #include <string>
 
 namespace Password {
-    struct Options {
-        uint16_t length;
-        bool upper;
-        bool lower;
-        bool numbers;
-        bool symbols;
-    };
+struct Options {
+  uint16_t length;
+  bool upper;
+  bool lower;
+  bool numbers;
+  bool symbols;
+};
 
-    std::string generate(const Options &opts);
-}
+std::string generate(const Options &opts);
+} // namespace Password
 
 #endif
