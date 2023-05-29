@@ -7,8 +7,14 @@ deps = []
 
 src = files(
   'main.cpp',
-  'src/generator.cpp',
-  'src/database.cpp',
+  'src/generator.cpp', 'src/database.cpp',
+  'src/arguments.cpp', 'src/commands.cpp',
+  'src/commands/help.cpp',
+  'src/commands/add.cpp',
+  'src/commands/edit.cpp',
+  'src/commands/remove.cpp',
+  'src/commands/search.cpp',
+  'src/commands/list.cpp',
   )
 
 # add_global_arguments('-Werror', language : 'cpp')
