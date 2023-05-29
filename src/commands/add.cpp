@@ -8,7 +8,6 @@
 #include <string>
 
 void Add::run(Database::DB *db, Args::AddFlags flags) {
-
   auto entry = new Database::Entry{};
   entry->name = new std::string{};
   entry->password = Password::generate(flags.password);
@@ -19,7 +18,6 @@ void Add::run(Database::DB *db, Args::AddFlags flags) {
     std::cout << "Name: ";
     std::getline(std::cin, *entry->name);
   } while (entry->name->empty() || Database::entry_exists(db, *entry->name));
-  std::cout << *entry->name << std::endl;
 
   std::cout << "Password: (" << *entry->password << ") ";
   std::getline(std::cin, str);
