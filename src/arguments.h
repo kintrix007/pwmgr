@@ -1,12 +1,16 @@
 #ifndef ARGUMENTS_H
 #define ARGUMENTS_H
 
+#include <optional>
+#include <string>
 #include <vector>
 namespace Args {
 enum Mode { HELP, ADD, EDIT, REMOVE, SEARCH, LIST };
 enum Field { NAME, CATEGORY, WEBSITE, USERNAME };
 
-struct HelpFlags {};
+struct HelpFlags {
+  std::optional<std::string> command;
+};
 
 struct AddFlags {
   bool gen_lower;

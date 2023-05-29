@@ -1,4 +1,5 @@
 #include "src/arguments.h"
+#include "src/commands.h"
 #include "src/database.h"
 #include "src/generator.h"
 #include <fstream>
@@ -8,8 +9,6 @@
 int main(int argc, char **argv) {
   srand((unsigned)time(NULL));
 
-  auto command = Args::parse(argc, argv);
-
   Password::Options opts = {
       .length = 30,
       .upper = false,
@@ -18,6 +17,7 @@ int main(int argc, char **argv) {
       .symbols = false,
   };
 
+  auto command = Args::parse(argc, argv);
 
   Database::DB *db = new Database::DB;
   
@@ -25,7 +25,6 @@ int main(int argc, char **argv) {
   in >> db;
   in.close();
   
-  std::cout << db;
 
   // Database::add_password(db, Database::new_entry (
   //       "new password",
@@ -36,10 +35,10 @@ int main(int argc, char **argv) {
   // std::cout << Database::entry_exists(db, "name") << std::endl;
   // std::cout << Database::entry_exists(db, "name2") << std::endl;
 
-  // std::cout << (*Database::get_entries(db)[0]->name) << std::endl;
+  commands::run(db, command);
 
-  // std::string password = Password::generate(opts);
-  // std::cout << password << std::endl;
+  std::cout << db;
+
   std::ofstream out("test.db");
   out << db;
   out.close();
