@@ -19,26 +19,28 @@ static std::string characters_between(const char first, const char last) {
 }
 
 std::string Password::generate(const Options &opts) {
-  std::string charset = "";
+  std::stringstream charset_stream;
 
   if (opts.lower) {
-    charset += characters_between('a', 'z');
+    charset_stream << characters_between('a', 'z');
   }
   if (opts.upper) {
-    charset += characters_between('A', 'Z');
+    charset_stream << characters_between('A', 'Z');
   }
   if (opts.numbers) {
-    charset += characters_between('0', '9');
+    charset_stream << characters_between('0', '9');
   }
   if (opts.symbols) {
-    charset += symbols;
+    charset_stream << symbols;
   }
 
-  std::stringstream password;
+  std::string charset = charset_stream.str();
+  std::string password(opts.length, '\0');
+
   for (int i = 0; i < opts.length; i++) {
     int idx = rand() % charset.size();
-    password << charset[idx];
+    password[i] = charset[idx];
   }
 
-  return password.str();
+  return password;
 }
