@@ -2,7 +2,9 @@
 #define DATABASE_H
 
 #include <cstdint>
+#include <istream>
 #include <optional>
+#include <ostream>
 #include <string>
 #include <unordered_map>
 #include <vector>
@@ -21,12 +23,12 @@ struct Entry {
   ~Entry();
 };
 
-Entry *new_entry(const std::string &name, const std::string &password,
-                       const uint64_t category,
-                       std::optional<const std::string> username,
-                       std::optional<const std::string> website);
-
 typedef std::unordered_map<std::string, Entry *> DB;
+
+Entry *new_entry(const std::string &name, const std::string &password,
+                 const uint64_t category,
+                 std::optional<const std::string> username,
+                 std::optional<const std::string> website);
 
 const std::vector<Entry *> get_entries(const DB *db);
 
@@ -47,5 +49,13 @@ void update_password(DB *db, const std::string &entry_name,
 
 bool delete_password(DB *db, const std::string &entry_name);
 } // namespace Database
+
+std::ostream &operator<<(std::ostream &out, const Database::DB *db);
+
+std::istream &operator>>(std::istream &in, Database::DB *db);
+
+std::ostream &operator<<(std::ostream &out, const Database::Entry *entry);
+
+std::istream &operator>>(std::istream &in, Database::Entry *entry);
 
 #endif
