@@ -18,24 +18,24 @@ struct Entry {
   std::optional<const std::string> *username;
   std::optional<const std::string> *website;
 
-  ~Entry() {
-    delete this->name;
-    delete this->password;
-    delete this->username;
-    delete this->website;
-  }
+  ~Entry();
 };
+
+Entry *new_entry(const std::string &name, const std::string &password,
+                       const uint64_t category,
+                       std::optional<const std::string> username,
+                       std::optional<const std::string> website);
 
 typedef std::unordered_map<std::string, Entry *> DB;
 
 const std::vector<Entry *> get_entries(const DB *db);
 
-inline bool entry_exists(const DB *db, const std::string &entry_name);
+bool entry_exists(const DB *db, const std::string &entry_name);
 
 std::optional<const Entry *> get_entry_by_name(const DB *db,
                                                const std::string &entry_name);
 
-inline bool add_password(DB *db, Entry *entry);
+bool add_password(DB *db, Entry *entry);
 
 /*
  * Instead of replacing the previous entry with the new one,

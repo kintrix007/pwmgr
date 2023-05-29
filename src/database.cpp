@@ -1,6 +1,28 @@
 #include "src/database.h"
 #include <optional>
+#include <string>
 #include <vector>
+
+Database::Entry::~Entry() {
+  delete this->name;
+  delete this->password;
+  delete this->username;
+  delete this->website;
+}
+
+Database::Entry *
+Database::new_entry(const std::string &name, const std::string &password,
+                    const uint64_t category,
+                    std::optional<const std::string> username,
+                    std::optional<const std::string> website) {
+  return new Entry{
+    .name = new std::string(name),
+    .password = new std::string(password),
+    .category = category,
+    .username = new std::optional(username),
+    .website  = new std::optional(website),
+  };
+}
 
 const std::vector<Database::Entry *> Database::get_entries(const DB *db) {
   std::vector<Database::Entry *> entries;
@@ -13,7 +35,7 @@ const std::vector<Database::Entry *> Database::get_entries(const DB *db) {
 }
 
 bool Database::entry_exists(const DB *db, const std::string &entry_name) {
-  return db->find(entry_name) == db->end();
+  return db->find(entry_name) != db->end();
 }
 
 std::optional<const Database::Entry *>
