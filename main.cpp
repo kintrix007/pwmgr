@@ -1,9 +1,13 @@
+#include "src/arguments.h"
+#include "src/database.h"
 #include "src/generator.h"
 #include <iostream>
 #include <string>
 
-int main() {
+int main(int argc, char **argv) {
   srand((unsigned)time(NULL));
+
+  auto command = Args::parse(argc, argv);
 
   Password::Options opts = {
       .length = 30,
@@ -13,12 +17,18 @@ int main() {
       .symbols = false,
   };
 
-  // std::optional<int> my_opt = 1;
-  // auto x = my_opt.transform([](int x){ return x+2; });
-  // std::cout << "Has value: " << x.value() << std::endl;
+  Database::DB *db = new Database::DB;
+  Database::add_password(db, Database::new_entry (
+        "name",
+        "passwd1",
+        0, {}, {}
+        ));
+
+  std::cout << Database::entry_exists(db, "name") << std::endl;
+  std::cout << Database::entry_exists(db, "name2") << std::endl;
 
   std::string password = Password::generate(opts);
-  std::cout << password << std::endl;
+  // std::cout << password << std::endl;
 
   return 0;
 }
