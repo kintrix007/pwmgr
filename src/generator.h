@@ -13,7 +13,7 @@ struct Options {
   bool symbols;
 };
 
-std::string generate(const Options &opts);
+std::string *generate(const Options &opts);
 } // namespace Password
 
 #endif

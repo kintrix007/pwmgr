@@ -18,7 +18,7 @@ static std::string characters_between(const char first, const char last) {
   return chars;
 }
 
-std::string Password::generate(const Options &opts) {
+std::string *Password::generate(const Options &opts) {
   std::stringstream charset_stream;
 
   if (opts.lower) {
@@ -35,11 +35,11 @@ std::string Password::generate(const Options &opts) {
   }
 
   std::string charset = charset_stream.str();
-  std::string password(opts.length, '\0');
+  auto password = new std::string(opts.length, '\0');
 
   for (int i = 0; i < opts.length; i++) {
     int idx = rand() % charset.size();
-    password[i] = charset[idx];
+    (*password)[i] = charset[idx];
   }
 
   return password;
