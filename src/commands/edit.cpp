@@ -5,9 +5,7 @@
 #include <limits>
 #include <string>
 
-//TODO: Fix? May be completely broken.
 void Edit::run(Database::DB *db, Args::EditFlags flags) {
-  // return;
   auto opt_entry = Database::get_entry_by_name(db, flags.entry_name);
   if (!opt_entry.has_value()) {
     return;
@@ -16,7 +14,7 @@ void Edit::run(Database::DB *db, Args::EditFlags flags) {
   auto entry = *opt_entry.value();
   std::string str;
 
-  std::cout << "Name: (" << *entry.name << ")";
+  std::cout << "Name: (" << *entry.name << ") ";
   std::getline(std::cin, str);
   if (!str.empty()) {
     entry.name = new std::string(str);
@@ -29,7 +27,7 @@ void Edit::run(Database::DB *db, Args::EditFlags flags) {
   }
 
   int tmp_int;
-  std::cout << "Category: (" << entry.category << ")";
+  std::cout << "Category: (" << entry.category << ") ";
   std::cin >> tmp_int;
   while (std::cin.fail() || tmp_int < 0) {
     std::cin.clear();
