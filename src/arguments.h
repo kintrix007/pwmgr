@@ -10,7 +10,7 @@ enum Mode { HELP, ADD, EDIT, REMOVE, SEARCH, LIST };
 enum Field { NAME, CATEGORY, WEBSITE, USERNAME };
 
 struct HelpFlags {
-  std::optional<std::string> command;
+  std::optional<std::string> command{};
 };
 
 struct AddFlags {
@@ -19,7 +19,7 @@ struct AddFlags {
 };
 
 struct EditFlags {
-  std::string entry_name;
+  std::string entry_name{};
 };
 
 struct RemoveFlags {
@@ -27,7 +27,7 @@ struct RemoveFlags {
 };
 
 struct SearchFlags {
-  Field search_on;
+  Field search_on{};
 };
 
 struct ListFlags {
@@ -42,6 +42,7 @@ union FlagsUnion {
   SearchFlags search;
   ListFlags list{{}};
 
+  FlagsUnion();
   ~FlagsUnion();
 };
 

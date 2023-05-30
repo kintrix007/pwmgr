@@ -4,6 +4,10 @@
 
 Args::Command::~Command() { delete this->flags; }
 
+Args::FlagsUnion::FlagsUnion() {
+    this->list = {{}};
+}
+
 Args::FlagsUnion::~FlagsUnion() {}
 
 const Args::Command Args::parse(int argc, char **argv) {
