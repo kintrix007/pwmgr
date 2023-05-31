@@ -25,7 +25,6 @@ int main(int argc, char **argv) {
   in >> db;
   in.close();
   
-
   // Database::add_password(db, Database::new_entry (
   //       "new password",
   //       "um actually...",
