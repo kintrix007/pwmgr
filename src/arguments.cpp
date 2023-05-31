@@ -26,8 +26,11 @@ const Args::Command Args::parse(int argc, char **argv) {
   // flags->remove = {{"a", "b"}};
   // Args::Command command = {REMOVE, flags};
 
-  flags->edit = new EditFlags{"b"}; // This segfaults... Absolutely no clue why.
-  Args::Command command = {EDIT, flags};
+  // flags->edit = new EditFlags{"b"};
+  // Args::Command command = {EDIT, flags};
+
+  flags->search = new SearchFlags{NAME, ""};
+  Args::Command command = {SEARCH, flags};
 
   return command;
 }
