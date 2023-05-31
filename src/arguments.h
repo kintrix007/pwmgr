@@ -28,6 +28,7 @@ struct RemoveFlags {
 
 struct SearchFlags {
   Field search_on{};
+  std::string search_term{};
 };
 
 struct ListFlags {
