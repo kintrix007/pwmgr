@@ -70,33 +70,21 @@ bool Database::add_password(DB *db, Entry *entry) {
   return db->insert({*entry->name, entry}).second;
 }
 
-void Database::update_password(DB *db, const std::string &entry_name,
-                               const Entry *new_entry) {
-  auto entry = db->at(entry_name);
+bool Database::edit_entry(Database::DB *db, const std::string &entry_name,
+                std::function<void(Database::Entry *)> mofify) {
+  if (!entry_exists(db, entry_name)) {
+    return false;
+  }
 
-  if (entry->name != new_entry->name) {
-    *entry->name = *new_entry->name;
+  auto entry = db->at(entry_name);
+  mofify(entry);
+
+  if (entry->name->compare(entry_name) != 0) {
     db->erase(entry_name);
     db->insert({*entry->name, entry});
   }
 
-  if (entry->password != new_entry->password) {
-    *entry->password = *new_entry->password;
-  }
-
-  if (entry->category != new_entry->category) {
-    entry->category = new_entry->category;
-  }
-
-  if (entry->username != new_entry->username) {
-    delete entry->username; // Pretty sure it is literally impossible to do otherwise
-    entry->username = new std::optional<const std::string>{*new_entry->username};
-  }
-
-  if (entry->website != new_entry->website) {
-    delete entry->website;
-    entry->website = new std::optional<const std::string>{*new_entry->website};
-  }
+  return true;
 }
 
 bool Database::delete_password(DB *db, const std::string &entry_name) {

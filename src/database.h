@@ -2,6 +2,7 @@
 #define DATABASE_H
 
 #include <cstdint>
+#include <functional>
 #include <istream>
 #include <optional>
 #include <ostream>
@@ -41,13 +42,8 @@ std::optional<const Entry *> get_entry_by_name(const DB *db,
 
 bool add_password(DB *db, Entry *entry);
 
-/*
- * Instead of replacing the previous entry with the new one,
- * copy the given contents of the given enrty into the pre-existing one
- * due to completely arbitrary functional requrements...
- */
-void update_password(DB *db, const std::string &entry_name,
-                     const Entry *new_entry);
+bool edit_entry(DB *db, const std::string &entry_name,
+                std::function<void(Entry *)> modify);
 
 bool delete_password(DB *db, const std::string &entry_name);
 } // namespace Database
