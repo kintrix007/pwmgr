@@ -35,12 +35,12 @@ struct ListFlags {
 };
 
 union FlagsUnion {
-  HelpFlags help;
-  AddFlags add;
-  EditFlags edit;
-  RemoveFlags remove;
-  SearchFlags search;
-  ListFlags list{{}};
+  HelpFlags *help;
+  AddFlags *add;
+  EditFlags *edit;
+  RemoveFlags *remove;
+  SearchFlags *search;
+  ListFlags *list;
 
   FlagsUnion();
   ~FlagsUnion();

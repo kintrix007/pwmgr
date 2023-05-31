@@ -5,7 +5,7 @@
 Args::Command::~Command() { delete this->flags; }
 
 Args::FlagsUnion::FlagsUnion() {
-    this->list = {{}};
+    this->help = nullptr;
 }
 
 Args::FlagsUnion::~FlagsUnion() {}
@@ -26,7 +26,7 @@ const Args::Command Args::parse(int argc, char **argv) {
   // flags->remove = {{"a", "b"}};
   // Args::Command command = {REMOVE, flags};
 
-  flags->edit = {"b"}; // This segfaults... Absolutely no clue why.
+  flags->edit = new EditFlags{"b"}; // This segfaults... Absolutely no clue why.
   Args::Command command = {EDIT, flags};
 
   return command;
