@@ -18,7 +18,11 @@ int main(int argc, char **argv) {
   //     .symbols = false,
   // };
 
-  auto command = Args::parse(argc, argv);
+  auto opt_command = Args::parse(argc, argv);
+  if (!opt_command.has_value()) {
+    return 1;
+  }
+  Args::Command *command = opt_command.value();
 
   Database::DB *db = new Database::DB;
   

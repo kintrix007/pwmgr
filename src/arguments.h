@@ -53,7 +53,7 @@ struct Command {
   ~Command();
 };
 
-const Command parse(int argc, char **argv);
+std::optional<Command*> parse(int argc, char **argv);
 } // namespace Args
 
 #endif
