@@ -10,6 +10,7 @@ Args::FlagsUnion::FlagsUnion() {
 
 Args::FlagsUnion::~FlagsUnion() {}
 
+//TODO: Implement parsing
 const Args::Command Args::parse(int argc, char **argv) {
   FlagsUnion *flags = new FlagsUnion{};
 

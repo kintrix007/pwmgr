@@ -22,6 +22,7 @@ int main(int argc, char **argv) {
 
   Database::DB *db = new Database::DB;
   
+  //TODO: Implement decryption
   std::ifstream in("test.db");
   in >> db;
   in.close();
@@ -39,6 +40,7 @@ int main(int argc, char **argv) {
 
   std::cout << db;
 
+  //TODO: Implement encryption
   std::ofstream out("test.db");
   out << db;
   out.close();
