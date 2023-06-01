@@ -5,7 +5,7 @@
 #include "src/database.h"
 
 namespace Add {
-void run(Database::DB *db, Args::AddFlags flags);
+void run(Database::DB *db, const Args::AddFlags &flags);
 }
 
 #endif

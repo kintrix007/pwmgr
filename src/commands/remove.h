@@ -5,7 +5,7 @@
 #include "src/database.h"
 
 namespace Remove {
-void run(Database::DB *db, Args::RemoveFlags flags);
+void run(Database::DB *db, const Args::RemoveFlags &flags);
 }
 
 #endif

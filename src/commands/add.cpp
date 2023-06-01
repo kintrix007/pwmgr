@@ -7,7 +7,7 @@
 #include <optional>
 #include <string>
 
-void Add::run(Database::DB *db, Args::AddFlags flags) {
+void Add::run(Database::DB *db, const Args::AddFlags &flags) {
   auto entry = new Database::Entry{};
   entry->name = new std::string{};
   entry->password = Password::generate(flags.password);

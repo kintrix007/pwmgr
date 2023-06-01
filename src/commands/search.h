@@ -5,7 +5,7 @@
 #include "src/database.h"
 
 namespace Search {
-void run(Database::DB *db, Args::SearchFlags flags);
+void run(Database::DB *db, const Args::SearchFlags &flags);
 }
 
 #endif

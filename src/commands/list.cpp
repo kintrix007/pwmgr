@@ -53,7 +53,7 @@ field_to_cmp_func(const Args::Field field) {
   throw; // Just to silence a warning
 }
 
-void List::run(Database::DB *db, Args::ListFlags flags) {
+void List::run(Database::DB *db, const Args::ListFlags &flags) {
   auto entries = Database::get_entries(db);
 
   std::vector<

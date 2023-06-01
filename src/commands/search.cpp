@@ -1,41 +1,12 @@
 #include "search.h"
 #include "src/arguments.h"
 #include "src/database.h"
+#include "src/search_utils.h"
 #include <cstdint>
 #include <iostream>
 #include <string>
 
-const char diff = 'a' - 'A';
-
-bool is_equal_ci(char x, char y) {
-  bool is_equal = false;
-  if ('a' <= x && x <= 'z' && x - diff == y) {
-    is_equal = true;
-  }
-  if ('A' <= x && x <= 'Z' && x + diff == y) {
-    is_equal = true;
-  }
-
-  return is_equal || x == y;
-}
-
-bool fuzzy_match(const std::string &str, const std::string with) {
-  size_t idx = 0;
-
-  for (char ch : str) {
-    if (!is_equal_ci(with[idx], ch)) {
-      continue;
-    }
-    idx++;
-    if (idx == with.size()) {
-      return true;
-    }
-  }
-
-  return false;
-}
-
-void Search::run(Database::DB *db, Args::SearchFlags flags) {
+void Search::run(Database::DB *db, const Args::SearchFlags &flags) {
   auto entries = Database::get_entries(db);
 
   uint64_t search_cat;

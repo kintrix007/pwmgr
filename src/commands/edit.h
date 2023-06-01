@@ -5,7 +5,7 @@
 #include "src/database.h"
 
 namespace Edit {
-void run(Database::DB *db, Args::EditFlags flags);
+void run(Database::DB *db, const Args::EditFlags &flags);
 }
 
 #endif

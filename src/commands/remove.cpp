@@ -3,7 +3,7 @@
 #include "src/database.h"
 #include <iostream>
 
-void Remove::run(Database::DB *db, Args::RemoveFlags flags) {
+void Remove::run(Database::DB *db, const Args::RemoveFlags &flags) {
   if (flags.entry_names.size() == 0) {
     std::cout << "There is nothing to delete." << std::endl;
     return;

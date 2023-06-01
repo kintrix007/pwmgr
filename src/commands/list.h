@@ -5,7 +5,7 @@
 #include "src/database.h"
 
 namespace List {
-void run(Database::DB *db, Args::ListFlags flags);
+void run(Database::DB *db, const Args::ListFlags &flags);
 }
 
 #endif

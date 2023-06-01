@@ -5,7 +5,7 @@
 #include <limits>
 #include <string>
 
-void Edit::run(Database::DB *db, Args::EditFlags flags) {
+void Edit::run(Database::DB *db, const Args::EditFlags &flags) {
   bool exists =
       Database::edit_entry(db, flags.entry_name, [](Database::Entry *entry) {
         std::string str;

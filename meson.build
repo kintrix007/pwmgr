@@ -9,6 +9,7 @@ src = files(
   'main.cpp',
   'src/generator.cpp', 'src/database.cpp',
   'src/arguments.cpp', 'src/commands.cpp',
+  'src/search_utils.cpp',
   'src/commands/help.cpp',
   'src/commands/add.cpp',
   'src/commands/edit.cpp',

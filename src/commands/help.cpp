@@ -30,7 +30,7 @@ PWMGR_DB_FILE  -  path to the database file
     PWMGR_DB_FILE=~/.local/share/pwmgr/passw.db pwmgr list
 )EOF";
 
-void Help::run(Database::DB *db, Args::HelpFlags flags) {
+void Help::run(Database::DB *, const Args::HelpFlags &flags) {
   if (!flags.command.has_value()) {
     std::cout << help << std::endl;
     return;
