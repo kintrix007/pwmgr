@@ -3,7 +3,7 @@
 
 #include "src/arguments.h"
 #include "src/database.h"
-namespace commands {
+namespace Commands {
 void run(Database::DB *db, const Args::Command &command);
 }
 

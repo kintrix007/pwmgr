@@ -7,15 +7,16 @@
 #include <string>
 
 int main(int argc, char **argv) {
+  // Generate new random seed based on system time
   srand((unsigned)time(NULL));
 
-  Password::Options opts = {
-      .length = 30,
-      .upper = false,
-      .lower = false,
-      .numbers = true,
-      .symbols = false,
-  };
+  // Password::Options opts = {
+  //     .length = 30,
+  //     .upper = false,
+  //     .lower = false,
+  //     .numbers = true,
+  //     .symbols = false,
+  // };
 
   auto command = Args::parse(argc, argv);
 
@@ -34,7 +35,7 @@ int main(int argc, char **argv) {
   // std::cout << Database::entry_exists(db, "name") << std::endl;
   // std::cout << Database::entry_exists(db, "name2") << std::endl;
 
-  commands::run(db, command);
+  Commands::run(db, command);
 
   std::cout << db;
 

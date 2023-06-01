@@ -7,7 +7,7 @@
 #include "src/commands/remove.h"
 #include "src/commands/search.h"
 
-void commands::run(Database::DB *db, const Args::Command &command) {
+void Commands::run(Database::DB *db, const Args::Command &command) {
   switch (command.mode) {
   case Args::HELP:
     Help::run(db, *command.flags->help);

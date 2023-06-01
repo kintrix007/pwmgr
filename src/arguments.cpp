@@ -29,7 +29,7 @@ const Args::Command Args::parse(int argc, char **argv) {
   // flags->edit = new EditFlags{"b"};
   // Args::Command command = {EDIT, flags};
 
-  flags->search = new SearchFlags{NAME, ""};
+  flags->search = new SearchFlags{NAME, "name"};
   Args::Command command = {SEARCH, flags};
 
   return command;
