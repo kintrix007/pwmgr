@@ -5,6 +5,7 @@
 #include <fstream>
 #include <iostream>
 #include <string>
+#include "src/commands/edit.h"
 
 int main(int argc, char **argv) {
   // Generate new random seed based on system time
@@ -27,6 +28,7 @@ int main(int argc, char **argv) {
   Database::DB *db = new Database::DB;
   
   //TODO: Implement decryption
+  //TODO: Handle if the file does not exist
   std::ifstream in("test.db");
   in >> db;
   in.close();
